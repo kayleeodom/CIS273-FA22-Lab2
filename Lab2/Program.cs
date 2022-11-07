@@ -54,7 +54,12 @@ public class Program
 
     private static bool Matches(char closing, char opening)
     {
-        throw new NotImplementedException();
+        if ( closing == opening )
+        {
+            return true ;
+        }
+        else return false;
+        //throw new NotImplementedException();
     }
 
 
@@ -63,8 +68,15 @@ public class Program
         // parse string into tokens
         string[] tokens = s.Split();
 
-        // foreach token
-        // if it's a number, push to stack
+            // foreach token
+        //foreach(token)
+        //{
+                // if it's a number, push to stack
+            //if (its a number)
+            //{
+                //push
+            //}
+        //}
 
         // if it's a math operator, pop twice;
         // compute result;
