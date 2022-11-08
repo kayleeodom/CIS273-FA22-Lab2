@@ -81,32 +81,47 @@ public class Program
     {
         // parse string into tokens
         string[] tokens = s.Split();
-        Stack<char> stack = new Stack<char>();
+        Stack<int> stack = new Stack<int>();
 
         // foreach token
-        foreach (var c in s)
+        foreach (string token in tokens)
         {
             // if it's a number, push to stack
-            if(char.IsDigit(c))
+            int value;
+            if(int.TryParse(token, out value))
             {
-                stack.Push(c);
+                stack.Push(value);
             }
-
             // if it's a math operator, pop twice;
-            if (c == '+' || c == '-' || c == '*' || c == '/')
+            else
             {
-                // pop twice
-                stack.Pop();
-                stack.Pop();
-
                 // compute result
-
                 // push result onto stack
-
+                int val1 = stack.Pop();
+                int val2 = stack.Pop();
+                if(value == '+')
+                {
+                    stack.Push(val2 + val1);
+                }
+                else if (value == '-')
+                {
+                    stack.Push(val2 - val1);
+                }
+                else if (value == '*')
+                {
+                    stack.Push(val2 * val1);
+                }
+                else if (value == '/')
+                {
+                    //double answer = val2 / val1;
+                    stack.Push(val2 / val1);
+                }
             }
-            // return top of stack (if the stack has 1 element)
-
+            //return top of stack (if the stack has 1 element)
+            return stack.Pop();
+            
         }
+
         return null;
     }
 
