@@ -1,4 +1,6 @@
-﻿namespace Lab2;
+﻿using System.Collections;
+
+namespace Lab2;
 public class Program
 {
     public static void Main(string[] args)
@@ -43,7 +45,7 @@ public class Program
         }
 
         // if stack is empty, return true
-        if( stack.Count ==0)
+        if( stack.Count == 0)
         {
             return true;
         }
@@ -54,12 +56,24 @@ public class Program
 
     private static bool Matches(char closing, char opening)
     {
-        if ( closing == opening )
+        if (opening == '(' && closing == ')')
         {
-            return true ;
+            return true;
         }
-        else return false;
-        //throw new NotImplementedException();
+        else if (opening == '[' && closing == ']')
+        {
+            return true;
+        }
+        else if (opening == '{' && closing == '}')
+        {
+            return true;
+        }
+        else if (opening == '<' && closing == '>')
+        {
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -67,23 +81,32 @@ public class Program
     {
         // parse string into tokens
         string[] tokens = s.Split();
+        Stack<char> stack = new Stack<char>();
 
-            // foreach token
-        //foreach(token)
-        //{
-                // if it's a number, push to stack
-            //if (its a number)
-            //{
-                //push
-            //}
-        //}
+        // foreach token
+        foreach (var c in s)
+        {
+            // if it's a number, push to stack
+            if(char.IsDigit(c))
+            {
+                stack.Push(c);
+            }
 
-        // if it's a math operator, pop twice;
-        // compute result;
-        // push result onto stack
+            // if it's a math operator, pop twice;
+            if (c == '+' || c == '-' || c == '*' || c == '/')
+            {
+                // pop twice
+                stack.Pop();
+                stack.Pop();
 
-        // return top of stack (if the stack has 1 element)
+                // compute result
 
+                // push result onto stack
+
+            }
+            // return top of stack (if the stack has 1 element)
+
+        }
         return null;
     }
 
